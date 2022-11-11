@@ -2,15 +2,46 @@
 
 #include <ctre/phoenix/motorcontrol/can/TalonFX.h>
 
+
+
+//copied includes
+#include <frc/geometry/Transform2d.h>
+#include <frc/geometry/Translation2d.h>
+#include <frc/geometry/Rotation2d.h>
+#include <frc/geometry/Pose2d.h>
+#include <frc/kinematics/SwerveDriveKinematics.h>
+#include <frc/kinematics/SwerveDriveOdometry.h>
+#include <frc/kinematics/SwerveModuleState.h>
+#include <frc/kinematics/ChassisSpeeds.h>
+#include <frc/controller/PIDController.h>
+#include <frc/controller/ProfiledPIDController.h>
+#include <frc/trajectory/TrapezoidProfile.h>
+#include <frc/controller/HolonomicDriveController.h>
+#include <frc/filter/SlewRateLimiter.h>
+#include <frc/Timer.h>
+#include <units/angle.h>
+#include <units/length.h>
+#include <units/angular_velocity.h>
+#include <units/velocity.h>
+#include <units/angular_acceleration.h>
+#include <units/math.h>
+#include <wpi/numbers>
+#include <array>
+#include <fstream>
+#include <map>
+#include <algorithm>
+#include <frc/Timer.h>
+
+
+
+
 #include "./Util.h"
 #include "Robot.h"
 #include "Constants.h"
+//#include "./commands/DriveWithJoystick.h"
 
-#include "./commands/DriveWithJoystick.h"
-// #include <frc2/command/Command.h>
-// #include <frc2/command/InstantCommand.h>
-// #include <frc2/command/SubsystemBase.h>
-// #include <frc2/command/button/Button.h>
+
+
 
 using ctre::phoenix::motorcontrol::can::TalonFX;
 
@@ -29,21 +60,17 @@ class DriveTrain : public frc2::SubsystemBase {
 
   void DriveToPosition(double x);
 
-  inline TalonFX& GetFrontL() { return m_FrontLeft; }
-  inline TalonFX& GetFrontR() { return m_FrontRight; }
-  inline TalonFX& GetBackL() { return m_BackLeft; }
-  inline TalonFX& GetBackR() { return m_BackRight; }
-
  private:
-  TalonFX m_FrontLeft;
-  TalonFX m_FrontRight;
-  TalonFX m_BackLeft;
-  TalonFX m_BackRight;
-
   frc2::Button m_DriveButton;
   frc2::Button m_FODToggle;
 
-  frc::SwerveDriveKinematics<4> m_kinematics{mfrontLeftLocation, m_frontRightLocation, m_backLeftLocation, m_backRightLocation};
+  frc::frc::Translation2d::Translation2d m_FrontLeftLocation;
+  frc::frc::Translation2d::Translation2d m_frontRightLocation;
+  frc::frc::Translation2d::Translation2d m_backLeftLocation;
+  frc::frc::Translation2d::Translation2d m_backRightLocation;
+  frc::SwerveDriveKinematics<4> m_kinematics;
+
+
 
   const double kMAX_VOLTAGE = 12.0; //FIX
 
