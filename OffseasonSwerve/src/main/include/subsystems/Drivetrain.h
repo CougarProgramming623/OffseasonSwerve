@@ -61,13 +61,11 @@ class DriveTrain : public frc2::SubsystemBase {
   void DriveToPosition(double x);
 
  private:
-  frc2::Button m_DriveButton;
-  frc2::Button m_FODToggle;
 
-  frc::frc::Translation2d::Translation2d m_FrontLeftLocation;
-  frc::frc::Translation2d::Translation2d m_frontRightLocation;
-  frc::frc::Translation2d::Translation2d m_backLeftLocation;
-  frc::frc::Translation2d::Translation2d m_backRightLocation;
+  frc::Translation2d m_FrontLeftLocation;
+  frc::Translation2d m_frontRightLocation;
+  frc::Translation2d m_backLeftLocation;
+  frc::Translation2d m_backRightLocation;
   frc::SwerveDriveKinematics<4> m_kinematics;
 
 
@@ -75,8 +73,8 @@ class DriveTrain : public frc2::SubsystemBase {
   const double kMAX_VOLTAGE = 12.0; //FIX
 
   //how fast the robot should be able to drive
-  const double kMAX_VELOCITY_METERS_PER_SECOND = 6380.0 / 60.0 * /*DriveReduction * WheelDiameter*/ *  M_PI;
+  const double kMAX_VELOCITY_METERS_PER_SECOND = 6380.0 / 60.0 * DRIVE_REDUCTION * WHEEL_DIAMETER * M_PI;
   
   //theoretical maximum angular velocity - can be replaced with measure amount
-  const double kMAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = kMAX_VELOCITY_METERS_PER_SECOND / std::sqrt(std::pow(DRIVETRAIN_TRACKWIDTH_METERS / 2), 2) + std::pow(DRIVETRAIN_WHEELBASE_METERS / 2), 2));
+  const double kMAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = kMAX_VELOCITY_METERS_PER_SECOND / std::sqrt(Pow((DRIVETRAIN_TRACKWIDTH_METERS / 2), 2) + Pow((DRIVETRAIN_WHEELBASE_METERS / 2), 2));
 };

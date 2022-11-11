@@ -11,6 +11,15 @@ inline double Deg2Rad(double deg) {
     return deg * (M_PI/180);
 }
 
+inline long double Pow(double n, int pow){
+  double res = n;
+  for (int i = 1; i < pow; i++)
+  {
+    res = res * n;
+  }
+  return res;
+}
+
 // this defines a lambda which when run returns the current button state of the
 // raw button specified by ID. Is taken in by the frc::Button constuctor
 #define BUTTON_L(id) \
