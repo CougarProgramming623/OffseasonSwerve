@@ -13,14 +13,16 @@ class DriveController {
     public:
         DriveController(int ID, double sensorVelocityCoefficient);
 
-        void setReferenceVoltage(double voltage);
+        void GetReferenceVoltage(double voltage);
 
-        double getStateVelocity();
+        double GetStateVelocity();
+
+        void BreakMode(bool on);
     private:
         TalonFX motor;
         const double sensorVelocityCoefficient;
 
-        double nominalVoltage;  //it is double.NaN in the java and i still dont know what that means
+        double nominalVoltage = 12;  //it is double.NaN in the java and i still dont know what that means
         double currentLimit;    //it is double.NaN in the java and i still dont know what that means
 
 

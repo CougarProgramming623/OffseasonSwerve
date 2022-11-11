@@ -16,7 +16,7 @@ DriveController::DriveController(int ID, double sensorVelocityCoefficient)
 
 double DriveController::SetReferenceVoltage(double voltage){
     motor.Set(ControlMode::PercentOutput, voltage / nominalVoltage);
-}
+}   
 
 double DriveController::GetStateVelocity(){
     return motor.GetSelectedSensorVelocity() * sensorVelocityCoefficient;

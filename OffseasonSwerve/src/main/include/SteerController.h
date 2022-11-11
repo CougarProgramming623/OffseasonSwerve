@@ -3,9 +3,9 @@
 
 class SteerController {
     public:
-        double getReferenceAngle();
+        double GetReferenceAngle();
+        double GetStateAngle();
 
-        void setReferenceAngle(double referenceAngleRadians);
-
-        double getStateAngle();
+        void SetReferenceAngle(double referenceAngleRadians);
+        void SetBreakMode(bool on);
 };
