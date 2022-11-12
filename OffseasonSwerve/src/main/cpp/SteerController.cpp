@@ -1,5 +1,13 @@
 #include "SteerController.h"
 
+
+SteerController::SteerController(int motorID, int EncoderPort, double motorEncoderPositionCoefficient, double motorEncoderVelocityCoefficient):
+    motor(motorID),
+    encoder{EncoderPort},
+    kMOTOR_ENCODER_POSITION_COEFFICIENT(motorEncoderPositionCoefficient),
+    kMOTOR_ENCODER_VELOCITY_COEFFICIENT(motorEncoderVelocityCoefficient)
+{}
+
 double SteerController::GetReferenceAngle() {return referenceAngleRadians;}
 
 double SteerController::GetStateAngle(){
@@ -16,10 +24,10 @@ void SteerController::SetReferenceAngle(double referenceAngleRadians){
 
     // Sometimes (~5% of the time) when we initialize, the absolute encoder isn't fully set up, and we don't
     // end up getting a good reading. If we reset periodically this won't matter anymore.
-    if(motor.GetSelectedSensorVelocity() * kMOTOR_ENCODER_VELOCITY_COEFFICIENT < 0/*ENCODER_RESET_MAX_ANGULAR_VELOCITY*/){ //FIX
-        if(++resetIteration >= 0 /*ENCODER_RESET_ITERATIONS*/){
+    if(motor.GetSelectedSensorVelocity() * kMOTOR_ENCODER_VELOCITY_COEFFICIENT < kENCODER_RESET_MAX_ANGULAR_VELOCITY){ //FIX
+        if(++resetIteration >= kENCODER_RESET_ITERATIONS){
             resetIteration = 0;
-            double absoluteAngle = absoluteEncoder.getAbsoluteAngle();
+            double absoluteAngle = encoder.GetValue() / kENCODER_MAX;
             motor.SetSelectedSensorPosition(absoluteAngle / kMOTOR_ENCODER_POSITION_COEFFICIENT);
             currentAngleRadians = absoluteAngle;
         } else {
