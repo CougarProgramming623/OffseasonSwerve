@@ -7,5 +7,4 @@ class SteerController {
         double GetStateAngle();
 
         void SetReferenceAngle(double referenceAngleRadians);
-        void SetBreakMode(bool on);
 };

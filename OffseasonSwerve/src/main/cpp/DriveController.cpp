@@ -14,7 +14,7 @@ DriveController::DriveController(int ID, double sensorVelocityCoefficient)
     motor.SetSensorPhase(true);                         //also dont know why we do this one
 }
 
-double DriveController::SetReferenceVoltage(double voltage){
+void  DriveController::SetReferenceVoltage(double voltage){
     motor.Set(ControlMode::PercentOutput, voltage / nominalVoltage);
 }   
 

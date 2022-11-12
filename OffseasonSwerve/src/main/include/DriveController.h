@@ -13,6 +13,7 @@ class DriveController {
     public:
         DriveController(int ID, double sensorVelocityCoefficient);
 
+        void SetReferenceVoltage(double voltage);
         void GetReferenceVoltage(double voltage);
 
         double GetStateVelocity();

@@ -1,13 +1,21 @@
 #pragma once
 
+#include "DriveController.h"
+#include "SteerController.h"
+
 
 class SwerveModule {
     public:
-        SwerveModule();
+        SwerveModule(int DriveID, double DriveSensorVelocityCoefficient, int SteerID);
 
-        double getDriveVelocity();
+        double GetDriveVelocity();
 
-        double getSteerAngle();
+        double GetSteerAngle();
 
-        void set(double driveVoltage, double steerAngle);
+        void Set(double driveVoltage, double steerAngle);
+        void BreakMode(bool on);
+    
+    private:
+        DriveController m_DriveController;
+        SteerController m_SteerController;
 };
