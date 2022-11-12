@@ -38,6 +38,7 @@
 #include "./Util.h"
 #include "Robot.h"
 #include "Constants.h"
+#include "SwerveModule.h"
 //#include "./commands/DriveWithJoystick.h"
 
 
@@ -53,21 +54,27 @@ class DriveTrain : public frc2::SubsystemBase {
   void BreakMode(bool on);
 
 
-  void UseVelocityPID();
-  void UseMagicPID();
-  void UsePostionPID();
-  void SetPID(double E, double P, double I, double D, double F);
+  // void UseVelocityPID();
+  // void UseMagicPID();
+  // void UsePostionPID();
+  // void SetPID(double E, double P, double I, double D, double F);
 
-  void DriveToPosition(double x);
+  // void DriveToPosition(double x);
 
  private:
 
   frc::Translation2d m_FrontLeftLocation;
-  frc::Translation2d m_frontRightLocation;
-  frc::Translation2d m_backLeftLocation;
-  frc::Translation2d m_backRightLocation;
-  frc::SwerveDriveKinematics<4> m_kinematics;
+  frc::Translation2d m_FrontRightLocation;
+  frc::Translation2d m_BackLeftLocation;
+  frc::Translation2d m_BackRightLocation;
+  frc::SwerveDriveKinematics<4> m_Kinematics;
+  //frc::SwerveDriveOdometry<4> m_Odometry;
+  //frc::ChassisSpeeds m_ChassisSpeeds;
 
+  SwerveModule m_FrontLeftModule;
+  SwerveModule m_FrontRightModule;
+  SwerveModule m_BackLeftModule;
+  SwerveModule m_BackRightModule;
 
 
   const double kMAX_VOLTAGE = 12.0; //FIX
