@@ -7,7 +7,7 @@ using ctre::phoenix::motorcontrol::NeutralMode;
 DriveController::DriveController(int ID, double sensorVelocityCoefficient)
 :
     motor(ID),
-    sensorVelocityCoefficient(sensorVelocityCoefficient)
+    kSENSOR_VELOCITY_COEFCIENT(sensorVelocityCoefficient)
 {
     motor.SetNeutralMode(NeutralMode::Brake);
     //motor.SetInverted(SMTH)                           Im not quite sure why but some of them rotate clockwise and others counter clockwise
@@ -19,7 +19,7 @@ void  DriveController::SetReferenceVoltage(double voltage){
 }   
 
 double DriveController::GetStateVelocity(){
-    return motor.GetSelectedSensorVelocity() * sensorVelocityCoefficient;
+    return motor.GetSelectedSensorVelocity() * kSENSOR_VELOCITY_COEFCIENT;
 }
 
 void DriveController::BreakMode(bool on){

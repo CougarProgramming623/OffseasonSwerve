@@ -21,7 +21,7 @@ class DriveController {
         void BreakMode(bool on);
     private:
         TalonFX motor;
-        const double sensorVelocityCoefficient;
+        const double kSENSOR_VELOCITY_COEFCIENT;
 
         double nominalVoltage = 12;  //it is double.NaN in the java and i still dont know what that means
         double currentLimit;    //it is double.NaN in the java and i still dont know what that means
