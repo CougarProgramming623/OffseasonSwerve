@@ -9,11 +9,14 @@ DriveTrain::DriveTrain()
       m_FrontLeftModule(FRONT_LEFT_MODULE_DRIVE_MOTOR, 1, FRONT_LEFT_MODULE_STEER_MOTOR, FRONT_LEFT_MODULE_ENCODER_PORT, 1, 1),
       m_FrontRightModule(FRONT_RIGHT_MODULE_DRIVE_MOTOR, 1, FRONT_RIGHT_MODULE_STEER_MOTOR, FRONT_LEFT_MODULE_ENCODER_PORT, 1, 1),
       m_BackLeftModule(BACK_LEFT_MODULE_DRIVE_MOTOR, 1, BACK_LEFT_MODULE_STEER_MOTOR, BACK_LEFT_MODULE_ENCODER_PORT, 1, 1),
-      m_BackRightModule(BACK_RIGHT_MODULE_DRIVE_MOTOR, 1, BACK_RIGHT_MODULE_STEER_MOTOR, BACK_RIGHT_MODULE_ENCODER_PORT, 1, 1)
+      m_BackRightModule(BACK_RIGHT_MODULE_DRIVE_MOTOR, 1, BACK_RIGHT_MODULE_STEER_MOTOR, BACK_RIGHT_MODULE_ENCODER_PORT, 1, 1),
+      m_ChassisSpeeds(units::meters_per_second_t (0.0), units::meters_per_second_t (0.0), units::radians_per_second_t (0.0), m_Rotation)  //IDK WHY IT DOESNT WORK
 {}
 void DriveTrain::BaseDrive(double power){}
 void DriveTrain::DriveInit(){}
-void DriveTrain::BreakMode(bool on){}
+void DriveTrain::BreakMode(bool on){
+  
+}
 
 // void DriveTrain::UseVelocityPID(){}
 // void DriveTrain::UseMagicPID(){}

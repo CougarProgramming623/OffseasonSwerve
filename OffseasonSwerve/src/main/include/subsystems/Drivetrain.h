@@ -1,6 +1,8 @@
 #pragma once
 
 #include <ctre/phoenix/motorcontrol/can/TalonFX.h>
+#include <frc/geometry/Rotation2d.h>
+#include <AHRS.h>
 
 
 
@@ -52,6 +54,7 @@ class DriveTrain : public frc2::SubsystemBase {
   void BaseDrive(double power);
   void DriveInit();
   void BreakMode(bool on);
+  inline AHRS& GetNavX() { return m_NavX; }
 
 
   // void UseVelocityPID();
@@ -68,13 +71,16 @@ class DriveTrain : public frc2::SubsystemBase {
   frc::Translation2d m_BackLeftLocation;
   frc::Translation2d m_BackRightLocation;
   frc::SwerveDriveKinematics<4> m_Kinematics;
-  //frc::SwerveDriveOdometry<4> m_Odometry;
-  //frc::ChassisSpeeds m_ChassisSpeeds;
+  //frc::SwerveDriveOdometry<4> m_Odometry;    //IDK where this was in the code
+  const frc::Rotation2d m_Rotation;             
+  frc::ChassisSpeeds m_ChassisSpeeds;
 
   SwerveModule m_FrontLeftModule;
   SwerveModule m_FrontRightModule;
   SwerveModule m_BackLeftModule;
   SwerveModule m_BackRightModule;
+
+  AHRS m_NavX{frc::SPI::Port::kMXP}; //IDK This is directly copied and pasted from rapic react
 
 
   const double kMAX_VOLTAGE = 12.0; //FIX

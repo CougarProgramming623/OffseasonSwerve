@@ -10,7 +10,7 @@ DriveController::DriveController(int ID, double sensorVelocityCoefficient)
     kSENSOR_VELOCITY_COEFCIENT(sensorVelocityCoefficient)
 {
     motor.SetNeutralMode(NeutralMode::Brake);
-    //motor.SetInverted(SMTH)                           Im not quite sure why but some of them rotate clockwise and others counter clockwise
+    //motor.SetInverted(SMTH)                           IDK why but some of them rotate clockwise and others counter clockwise
     motor.SetSensorPhase(true);                         //also dont know why we do this one
 }
 
