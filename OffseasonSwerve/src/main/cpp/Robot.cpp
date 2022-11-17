@@ -8,7 +8,7 @@
 #include <frc2/command/CommandScheduler.h>
 
 void Robot::RobotInit() {
-  GetDrivetrain().init();
+  GetDriveTrain().DriveInit();
 }
 
 /**
@@ -20,7 +20,7 @@ void Robot::RobotInit() {
  * LiveWindow and SmartDashboard integrated updating.
  */
 void Robot::RobotPeriodic() {
-  Robot::
+  GetDriveTrain().BaseDrive(0);
   frc2::CommandScheduler::GetInstance().Run();
 }
 
