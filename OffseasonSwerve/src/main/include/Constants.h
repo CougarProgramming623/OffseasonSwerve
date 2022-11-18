@@ -31,17 +31,17 @@
     #define FRONT_LEFT_MODULE_DRIVE_MOTOR 32 // FIXME Set front left module drive motor ID
     #define FRONT_LEFT_MODULE_STEER_MOTOR 35 // FIXME Set front left module steer motor ID
     #define FRONT_LEFT_MODULE_STEER_OFFSET -Deg2Rad(0.0) // FIXME Measure and set front left steer offset
-    #define FRONT_LEFT_MODULE_ENCODER_PORT 0 //FIXME
+    #define FRONT_LEFT_MODULE_ENCODER_PORT 3 //FIXME
 
     #define FRONT_RIGHT_MODULE_DRIVE_MOTOR 37 // FIXME Set front right drive motor ID
     #define FRONT_RIGHT_MODULE_STEER_MOTOR 33 // FIXME Set front right steer motor ID
     #define FRONT_RIGHT_MODULE_STEER_OFFSET -Deg2Rad(0.0) // FIXME Measure and set front right steer offset
-    #define FRONT_RIGHT_MODULE_ENCODER_PORT 0 //FIXME
+    #define FRONT_RIGHT_MODULE_ENCODER_PORT 1 //FIXME
 
     #define BACK_LEFT_MODULE_DRIVE_MOTOR 41 // FIXME Set back left drive motor ID
     #define BACK_LEFT_MODULE_STEER_MOTOR 31 // FIXME Set back left steer motor ID
     #define BACK_LEFT_MODULE_STEER_OFFSET -Deg2Rad(0.0) // FIXME Measure and set back left steer offset
-    #define BACK_LEFT_MODULE_ENCODER_PORT 0 //FIXME
+    #define BACK_LEFT_MODULE_ENCODER_PORT 2 //FIXME
 
     #define BACK_RIGHT_MODULE_DRIVE_MOTOR 42 // FIXME Set back right drive motor ID
     #define BACK_RIGHT_MODULE_STEER_MOTOR 34 // FIXME Set back right steer motor ID

@@ -3,6 +3,7 @@
 #include <frc/trajectory/Trajectory.h>
 #include <frc/kinematics/SwerveModuleState.h>
 
+
 DriveTrain::DriveTrain()
     : m_FrontLeftLocation(units::meter_t (DRIVETRAIN_TRACKWIDTH_METERS / 2.0), units::meter_t (DRIVETRAIN_WHEELBASE_METERS / 2.0)),
       m_FrontRightLocation(units::meter_t (DRIVETRAIN_TRACKWIDTH_METERS / 2.0), units::meter_t (-DRIVETRAIN_WHEELBASE_METERS / 2.0)),
@@ -11,18 +12,24 @@ DriveTrain::DriveTrain()
       m_Kinematics(m_FrontLeftLocation, m_FrontRightLocation, m_BackLeftLocation, m_BackRightLocation),
       m_Rotation(),
       m_FrontLeftModule(FRONT_LEFT_MODULE_DRIVE_MOTOR, 1, FRONT_LEFT_MODULE_STEER_MOTOR, FRONT_LEFT_MODULE_ENCODER_PORT, 1, 1),
-      m_FrontRightModule(FRONT_RIGHT_MODULE_DRIVE_MOTOR, 1, FRONT_RIGHT_MODULE_STEER_MOTOR, FRONT_LEFT_MODULE_ENCODER_PORT, 1, 1),
+      m_FrontRightModule(FRONT_RIGHT_MODULE_DRIVE_MOTOR, 1, FRONT_RIGHT_MODULE_STEER_MOTOR, FRONT_RIGHT_MODULE_ENCODER_PORT, 1, 1),
       m_BackLeftModule(BACK_LEFT_MODULE_DRIVE_MOTOR, 1, BACK_LEFT_MODULE_STEER_MOTOR, BACK_LEFT_MODULE_ENCODER_PORT, 1, 1),
       m_BackRightModule(BACK_RIGHT_MODULE_DRIVE_MOTOR, 1, BACK_RIGHT_MODULE_STEER_MOTOR, BACK_RIGHT_MODULE_ENCODER_PORT, 1, 1),
       m_ChassisSpeeds{0_mps, 0_mps, 0_rad_per_s}
 {}
 void DriveTrain::BaseDrive(double power){
+  DebugOutF("BR= " + std::to_string(m_BackLeftModule..GetValue()));
+  DebugOutF("FR= " + std::to_string(frc::AnalogInput(1).GetValue()));
+  DebugOutF("BL= " + std::to_string(frc::AnalogInput(2).GetValue()));
+  DebugOutF("FL= " + std::to_string(frc::AnalogInput(3).GetValue()));
 
   //just goes forward slowly
+  /*
   m_FrontLeftModule.Set(1,0);
   m_FrontRightModule.Set(1,0);
   m_BackLeftModule.Set(1,0);
   m_BackRightModule.Set(1,0);
+  */
 
   //frc:: SwerveModuleStats states[4] = m_Kinematics.ToSwerveModuleStates(m_ChassisSpeeds);
   //SwerveDriveKinematics.desaturateWheelSpeeds(states, MAX_VELOCITY_METERS_PER_SECOND);
