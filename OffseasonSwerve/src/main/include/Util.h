@@ -22,5 +22,4 @@ inline long double Pow(double n, int pow){
 
 // this defines a lambda which when run returns the current button state of the
 // raw button specified by ID. Is taken in by the frc::Button constuctor
-#define BUTTON_L(id) \
-  [&] { return Robot::GetRobot()->GetButtonBoard().GetRawButton(id); }
+#define BUTTON_L(id) [&] { return Robot::GetRobot()->GetButtonBoard().GetRawButton(id); }

@@ -9,6 +9,7 @@ DriveTrain::DriveTrain()
       m_BackLeftLocation(units::meter_t (-DRIVETRAIN_TRACKWIDTH_METERS / 2.0), units::meter_t (DRIVETRAIN_WHEELBASE_METERS / 2.0)),
       m_BackRightLocation(units::meter_t (-DRIVETRAIN_TRACKWIDTH_METERS / 2.0), units::meter_t (-DRIVETRAIN_WHEELBASE_METERS / 2.0)),
       m_Kinematics(m_FrontLeftLocation, m_FrontRightLocation, m_BackLeftLocation, m_BackRightLocation),
+      m_Rotation(),
       m_FrontLeftModule(FRONT_LEFT_MODULE_DRIVE_MOTOR, 1, FRONT_LEFT_MODULE_STEER_MOTOR, FRONT_LEFT_MODULE_ENCODER_PORT, 1, 1),
       m_FrontRightModule(FRONT_RIGHT_MODULE_DRIVE_MOTOR, 1, FRONT_RIGHT_MODULE_STEER_MOTOR, FRONT_LEFT_MODULE_ENCODER_PORT, 1, 1),
       m_BackLeftModule(BACK_LEFT_MODULE_DRIVE_MOTOR, 1, BACK_LEFT_MODULE_STEER_MOTOR, BACK_LEFT_MODULE_ENCODER_PORT, 1, 1),
