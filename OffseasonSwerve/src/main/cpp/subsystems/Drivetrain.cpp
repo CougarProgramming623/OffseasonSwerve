@@ -18,15 +18,15 @@ DriveTrain::DriveTrain()
       m_ChassisSpeeds{0_mps, 0_mps, 0_rad_per_s}
 {}
 void DriveTrain::BaseDrive(double power){
-  DebugOutF("BR= " + std::to_string(m_BackLeftModule..GetValue()));
-  DebugOutF("FR= " + std::to_string(frc::AnalogInput(1).GetValue()));
-  DebugOutF("BL= " + std::to_string(frc::AnalogInput(2).GetValue()));
-  DebugOutF("FL= " + std::to_string(frc::AnalogInput(3).GetValue()));
+  DebugOutF("BR= " + std::to_string(m_BackRightModule.m_SteerController.encoder.GetVoltage() * ENCODER_VOLTAGE_TO_DEGREE));
+  //DebugOutF("FR= " + std::to_string(m_FrontRightModule.m_SteerController.encoder.GetVoltage()));
+  //DebugOutF("BL= " + std::to_string(m_BackLeftModule.m_SteerController.encoder.GetVoltage()));
+  //DebugOutF("FL= " + std::to_string(m_FrontLeftModule.m_SteerController.encoder.GetVoltage()));
 
   //just goes forward slowly
-  /*
-  m_FrontLeftModule.Set(1,0);
-  m_FrontRightModule.Set(1,0);
+  
+  m_BackRightModule.Set(1,-90);
+  /*m_FrontRightModule.Set(1,0);
   m_BackLeftModule.Set(1,0);
   m_BackRightModule.Set(1,0);
   */

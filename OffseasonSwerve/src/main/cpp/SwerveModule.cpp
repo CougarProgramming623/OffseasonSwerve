@@ -21,6 +21,7 @@ void SwerveModule::BreakMode(bool on){
 }
 
 void SwerveModule::Set(double driveVoltage, double steerAngle){
+    steerAngle = Deg2Rad(steerAngle);
     steerAngle = fmod(steerAngle, (2.0 * M_PI)); 
     if(steerAngle < 0.0){
         steerAngle += 2.0 * M_PI;

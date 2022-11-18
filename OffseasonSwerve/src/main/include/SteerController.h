@@ -18,7 +18,7 @@ class SteerController {
         double GetStateAngle();
 
         void SetReferenceAngle(double referenceAngleRadians);
-    private:
+
         TalonFX motor;
         ControlMode motorControlMode;
         

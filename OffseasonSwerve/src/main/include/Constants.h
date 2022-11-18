@@ -27,6 +27,7 @@
      * Should be measured from center to center.
      */
     #define DRIVETRAIN_WHEELBASE_METERS 0.666 // FIXME Measure and set wheelbase
+    #define ENCODER_VOLTAGE_TO_DEGREE 360/4.809
 
     #define FRONT_LEFT_MODULE_DRIVE_MOTOR 32 // FIXME Set front left module drive motor ID
     #define FRONT_LEFT_MODULE_STEER_MOTOR 35 // FIXME Set front left module steer motor ID
@@ -43,8 +44,8 @@
     #define BACK_LEFT_MODULE_STEER_OFFSET -Deg2Rad(0.0) // FIXME Measure and set back left steer offset
     #define BACK_LEFT_MODULE_ENCODER_PORT 2 //FIXME
 
-    #define BACK_RIGHT_MODULE_DRIVE_MOTOR 42 // FIXME Set back right drive motor ID
-    #define BACK_RIGHT_MODULE_STEER_MOTOR 34 // FIXME Set back right steer motor ID
+    #define BACK_RIGHT_MODULE_DRIVE_MOTOR 42
+    #define BACK_RIGHT_MODULE_STEER_MOTOR 34
     #define BACK_RIGHT_MODULE_STEER_OFFSET -Deg2Rad(0.0) // FIXME Measure and set back right steer offset
     #define BACK_RIGHT_MODULE_ENCODER_PORT 0 //FIXME
 #endif

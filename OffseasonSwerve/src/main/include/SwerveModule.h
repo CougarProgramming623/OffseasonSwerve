@@ -17,7 +17,6 @@ class SwerveModule {
         void Set(double driveVoltage, double steerAngle);
         void BreakMode(bool on);
     
-    private:
         DriveController m_DriveController;
         SteerController m_SteerController;
 };
