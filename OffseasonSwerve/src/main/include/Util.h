@@ -11,6 +11,11 @@ inline double Deg2Rad(double deg) {
     return deg * (M_PI/180);
 }
 
+inline double Rad2Deg(double deg) {
+    return deg * (180/M_PI);
+}
+
+
 inline long double Pow(double n, int pow){
   double res = n;
   for (int i = 1; i < pow; i++)

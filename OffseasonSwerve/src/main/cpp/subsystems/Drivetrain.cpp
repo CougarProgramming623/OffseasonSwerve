@@ -11,21 +11,21 @@ DriveTrain::DriveTrain()
       m_BackRightLocation(units::meter_t (-DRIVETRAIN_TRACKWIDTH_METERS / 2.0), units::meter_t (-DRIVETRAIN_WHEELBASE_METERS / 2.0)),
       m_Kinematics(m_FrontLeftLocation, m_FrontRightLocation, m_BackLeftLocation, m_BackRightLocation),
       m_Rotation(),
-      m_FrontLeftModule(FRONT_LEFT_MODULE_DRIVE_MOTOR, 1, FRONT_LEFT_MODULE_STEER_MOTOR, FRONT_LEFT_MODULE_ENCODER_PORT, 1, 1),
-      m_FrontRightModule(FRONT_RIGHT_MODULE_DRIVE_MOTOR, 1, FRONT_RIGHT_MODULE_STEER_MOTOR, FRONT_RIGHT_MODULE_ENCODER_PORT, 1, 1),
-      m_BackLeftModule(BACK_LEFT_MODULE_DRIVE_MOTOR, 1, BACK_LEFT_MODULE_STEER_MOTOR, BACK_LEFT_MODULE_ENCODER_PORT, 1, 1),
-      m_BackRightModule(BACK_RIGHT_MODULE_DRIVE_MOTOR, 1, BACK_RIGHT_MODULE_STEER_MOTOR, BACK_RIGHT_MODULE_ENCODER_PORT, 1, 1),
+      m_FrontLeftModule(FRONT_LEFT_MODULE_DRIVE_MOTOR, FRONT_LEFT_MODULE_STEER_MOTOR, FRONT_LEFT_MODULE_ENCODER_PORT, 0),
+      m_FrontRightModule(FRONT_RIGHT_MODULE_DRIVE_MOTOR, FRONT_RIGHT_MODULE_STEER_MOTOR, FRONT_RIGHT_MODULE_ENCODER_PORT, 73),
+      m_BackLeftModule(BACK_LEFT_MODULE_DRIVE_MOTOR, BACK_LEFT_MODULE_STEER_MOTOR, BACK_LEFT_MODULE_ENCODER_PORT, 0), //FIX OFFSET
+      m_BackRightModule(BACK_RIGHT_MODULE_DRIVE_MOTOR, BACK_RIGHT_MODULE_STEER_MOTOR, BACK_RIGHT_MODULE_ENCODER_PORT, 0), //FIX OFFSET
       m_ChassisSpeeds{0_mps, 0_mps, 0_rad_per_s}
 {}
 void DriveTrain::BaseDrive(double power){
-  DebugOutF("BR= " + std::to_string(m_BackRightModule.m_SteerController.encoder.GetVoltage() * ENCODER_VOLTAGE_TO_DEGREE));
-  //DebugOutF("FR= " + std::to_string(m_FrontRightModule.m_SteerController.encoder.GetVoltage()));
+  DebugOutF("BR= " + std::to_string(Rad2Deg(m_BackRightModule.m_SteerController.GetStateAngle())));
+  //DebugOutF("FR= " + std::to_string(Rad2Deg(m_FrontRightModule.m_SteerController.GetStateAngle())));
   //DebugOutF("BL= " + std::to_string(m_BackLeftModule.m_SteerController.encoder.GetVoltage()));
   //DebugOutF("FL= " + std::to_string(m_FrontLeftModule.m_SteerController.encoder.GetVoltage()));
 
   //just goes forward slowly
   
-  m_BackRightModule.Set(1,-90);
+  //m_BackRightModule.Set(1,-90);
   /*m_FrontRightModule.Set(1,0);
   m_BackLeftModule.Set(1,0);
   m_BackRightModule.Set(1,0);

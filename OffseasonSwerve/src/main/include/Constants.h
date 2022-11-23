@@ -3,6 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
+#include <math.h>
+
 
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
@@ -18,9 +20,18 @@
 
 #ifdef ROBOT_WHEELBASE
 
+
     #define DRIVE_REDUCTION (14.0 / 50.0) * (27.0 / 17.0) * (15.0 / 45.0)
+    #define STEER_REDUCTION (14.0 /50.0) * (10.0 / 60.0)
     #define WHEEL_DIAMETER 0.10033
     #define DRIVETRAIN_TRACKWIDTH_METERS 0.5644 // FIXME Measure and set trackwidth
+    
+    #define STEER_ENCODER_POSITION_CONSTANT 2.0 * M_PI / 2048 * STEER_REDUCTION
+    #define STEER_ENCODER_VELOCITY_CONSTANT STEER_ENCODER_POSITION_CONSTANT * 10.0
+
+    #define DRIVE_ENCODER_POSITION_CONSTANT M_PI * WHEEL_DIAMETER * DRIVE_REDUCTION / 2048
+    #define DRIVE_ENCODER_VELOCITY_CONSTANT DRIVE_ENCODER_POSITION_CONSTANT * 10
+
     /**
      * The front-to-back distance between the drivetrain wheels.
      *

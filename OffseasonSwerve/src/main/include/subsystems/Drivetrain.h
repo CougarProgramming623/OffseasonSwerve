@@ -40,7 +40,7 @@ class DriveTrain : public frc2::SubsystemBase {
   void BaseDrive(double power);
   void DriveInit();
   void BreakMode(bool on);
-  
+    
   // void UseVelocityPID();
   // void UseMagicPID();
   // void UsePostionPID();

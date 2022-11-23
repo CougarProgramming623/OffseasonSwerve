@@ -1,11 +1,10 @@
 #include "SwerveModule.h"
 #include "Util.h"
 
-SwerveModule::SwerveModule(int driveID, double driveSensorVelocityCoefficient, 
-                     int steerID, int encoderPort, double steerEncoderPositionCoefficient,
-                     double steerEncoderVelocityCoefficient):
-    m_DriveController(driveID, driveSensorVelocityCoefficient), 
-    m_SteerController(steerID, encoderPort, steerEncoderPositionCoefficient, steerEncoderVelocityCoefficient)
+SwerveModule::SwerveModule(int driveID, 
+                     int steerID, int encoderPort, double angleOffset):
+    m_DriveController(driveID), 
+    m_SteerController(steerID, encoderPort, angleOffset)
 {}
 
 double SwerveModule::GetDriveVelocity(){

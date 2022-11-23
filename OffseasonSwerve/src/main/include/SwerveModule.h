@@ -6,9 +6,7 @@
 
 class SwerveModule {
     public:
-        SwerveModule(int driveID, double driveSensorVelocityCoefficient, 
-                     int steerID, int encoderPort, double steerEncoderPositionCoefficient,
-                     double steerEncoderVelocityCoefficient);
+        SwerveModule(int driveID, int steerID, int encoderPort, double angleOffset);
 
         double GetDriveVelocity();
 
