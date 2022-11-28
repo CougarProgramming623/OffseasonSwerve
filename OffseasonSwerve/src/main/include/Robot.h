@@ -42,6 +42,4 @@ class Robot : public frc::TimedRobot {
   RobotContainer m_container;
 
   DriveTrain m_DriveTrain;
-
-
 };

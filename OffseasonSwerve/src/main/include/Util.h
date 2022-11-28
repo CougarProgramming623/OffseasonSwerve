@@ -18,8 +18,7 @@ inline double Rad2Deg(double deg) {
 
 inline long double Pow(double n, int pow){
   double res = n;
-  for (int i = 1; i < pow; i++)
-  {
+  for (int i = 1; i < pow; i++) {
     res = res * n;
   }
   return res;

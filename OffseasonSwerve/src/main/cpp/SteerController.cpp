@@ -5,7 +5,7 @@ SteerController::SteerController(int motorID, int EncoderPort, double AngleOffse
     motor(motorID),
     encoder{EncoderPort}
 {
-    motor.SetSelectedSensorPosition(Deg2Rad(360-fmod(encoder.GetVoltage() * ENCODER_VOLTAGE_TO_DEGREE + (360-AngleOffset), 360)) / STEER_ENCODER_POSITION_CONSTANT);
+    motor.SetSelectedSensorPosition(Deg2Rad(360-(fmod(((encoder.GetVoltage() * ENCODER_VOLTAGE_TO_DEGREE) + (360-AngleOffset)), 360))) / STEER_ENCODER_POSITION_CONSTANT);
 }
 
 double SteerController::GetReferenceAngle() {return referenceAngleRadians;}
