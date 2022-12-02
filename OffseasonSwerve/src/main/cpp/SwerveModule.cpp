@@ -1,8 +1,7 @@
 #include "SwerveModule.h"
 #include "Util.h"
 
-SwerveModule::SwerveModule(int driveID, 
-                     int steerID, int encoderPort, double angleOffset):
+SwerveModule::SwerveModule(int driveID, int steerID, int encoderPort, double angleOffset):
     m_DriveController(driveID), 
     m_SteerController(steerID, encoderPort, angleOffset)
 {}

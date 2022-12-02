@@ -3,7 +3,8 @@
 
 SteerController::SteerController(int motorID, int EncoderPort, double AngleOffset):
     motor(motorID),
-    encoder{EncoderPort}
+    encoder{EncoderPort},
+    motorControlMode{ctre::phoenix::motorcontrol::ControlMode::Position}
 {
     motor.SetSelectedSensorPosition(Deg2Rad(360-(fmod(((encoder.GetVoltage() * ENCODER_VOLTAGE_TO_DEGREE) + (360-AngleOffset)), 360))) / STEER_ENCODER_POSITION_CONSTANT);
 }
@@ -35,6 +36,11 @@ void SteerController::SetReferenceAngle(double referenceAngleRadians){
         adjustedReferenceAngleRadians += 2.0 * M_PI;
     }
 
-    motor.Set(motorControlMode, adjustedReferenceAngleRadians / STEER_ENCODER_POSITION_CONSTANT);
+    motor.Set(motorControlMode, (adjustedReferenceAngleRadians / STEER_ENCODER_POSITION_CONSTANT)-(currentAngleRadians/STEER_ENCODER_POSITION_CONSTANT));
     SteerController::referenceAngleRadians = referenceAngleRadians; //IDK IF THIS WORKS
+    DebugOutF("angle: " + std::to_string(adjustedReferenceAngleRadians));
+    DebugOutF("angleDeg: " + std::to_string( Rad2Deg(adjustedReferenceAngleRadians)));
+    DebugOutF("TarEnc: " + std::to_string(adjustedReferenceAngleRadians/STEER_ENCODER_POSITION_CONSTANT) );
+    DebugOutF("CurEnc: " + std::to_string(motor.GetSelectedSensorPosition()));
+
 }

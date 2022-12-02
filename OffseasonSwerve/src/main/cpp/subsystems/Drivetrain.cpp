@@ -21,12 +21,13 @@ void DriveTrain::BaseDrive(double power){
   //DebugOutF("FR= " + std::to_string(Rad2Deg(m_FrontRightModule.m_SteerController.GetStateAngle())));
   //DebugOutF("BL= " + std::to_string(Rad2Deg(m_BackLeftModule.m_SteerController.GetStateAngle())));
   //DebugOutF("BR= " + std::to_string(Rad2Deg(m_BackRightModule.m_SteerController.GetStateAngle())));
-  //DebugOutF("FL= " + std::to_string(Rad2Deg(m_FrontLeftModule.m_SteerController.GetStateAngle())));
+  DebugOutF("FL= " + std::to_string(Rad2Deg(m_FrontLeftModule.m_SteerController.GetStateAngle())));
 
-  auto [fl, fr, bl, br] = m_Kinematics.ToSwerveModuleStates(m_ChassisSpeeds);
-  frc::SwerveModuleState states[4] = {fl, fr, bl, br};
+  // auto [fl, fr, bl, br] = m_Kinematics.ToSwerveModuleStates(m_ChassisSpeeds);
+  // frc::SwerveModuleState states[4] = {fl, fr, bl, br};
   //m_Kinematics.DesaturateWheelSpeeds(fl, fr, bl, br);
 
+  m_FrontLeftModule.Set(0, 90);
 
   // m_FrontLeftModule.Set(states[0].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[0].angle.Radians());
   // m_FrontRightModule.Set(states[1].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[1].angle.Radians());
