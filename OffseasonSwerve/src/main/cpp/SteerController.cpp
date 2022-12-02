@@ -36,10 +36,10 @@ void SteerController::SetReferenceAngle(double referenceAngleRadians){
     //     adjustedReferenceAngleRadians += 2.0 * M_PI;
     // }
 
-    motor.Set(motorControlMode, (adjustedReferenceAngleRadians / STEER_ENCODER_POSITION_CONSTANT)-(currentAngleRadians/STEER_ENCODER_POSITION_CONSTANT)); //FIX maybe subtract a zero angle instead
+    motor.Set(motorControlMode, ((adjustedReferenceAngleRadians / STEER_ENCODER_POSITION_CONSTANT))); //FIX maybe subtract a zero angle instead
     //referenceAngleRadians = referenceAngleRadians; //FIX maybe is assigned the adjusted reference angle?
-    DebugOutF("angle: " + std::to_string((adjustedReferenceAngleRadians)-(currentAngleRadians)));
-    DebugOutF("angleDeg: " + std::to_string( Rad2Deg((adjustedReferenceAngleRadians)-(currentAngleRadians))));
-    DebugOutF("TarEnc: " + std::to_string((adjustedReferenceAngleRadians / STEER_ENCODER_POSITION_CONSTANT)-(currentAngleRadians/STEER_ENCODER_POSITION_CONSTANT)));
-    DebugOutF("CurEnc: " + std::to_string(motor.GetSelectedSensorPosition()));
+    // DebugOutF("angle: " + std::to_string((adjustedReferenceAngleRadians)/*-(currentAngleRadians)*/));
+    // DebugOutF("angleDeg: " + std::to_string( Rad2Deg((adjustedReferenceAngleRadians)/*-(currentAngleRadians)*/)));
+    // DebugOutF("TarEnc: " + std::to_string((adjustedReferenceAngleRadians / STEER_ENCODER_POSITION_CONSTANT)/*-(currentAngleRadians/STEER_ENCODER_POSITION_CONSTANT)*/));
+    // DebugOutF("CurEnc: " + std::to_string(motor.GetSelectedSensorPosition()));
 }

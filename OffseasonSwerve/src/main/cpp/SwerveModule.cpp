@@ -49,9 +49,9 @@ void SwerveModule::Set(double driveVoltage, double steerAngle){
         steerAngle += 2.0 * M_PI;
     }
 
-    DebugOutF("Set() steer angle rad: " + std::to_string(steerAngle));
-    DebugOutF("Set() steer angle deg: " + std::to_string(Rad2Deg(steerAngle)));
-    DebugOutF("Set() steer angle ticks: " + std::to_string((steerAngle / DRIVE_ENCODER_POSITION_CONSTANT)));
+    // DebugOutF("Set() steer angle rad: " + std::to_string(steerAngle));
+    // DebugOutF("Set() steer angle deg: " + std::to_string(Rad2Deg(steerAngle)));
+    // DebugOutF("Set() steer angle ticks: " + std::to_string((steerAngle / STEER_ENCODER_POSITION_CONSTANT)));
 
     m_DriveController.SetReferenceVoltage(driveVoltage);
     m_SteerController.SetReferenceAngle(steerAngle);

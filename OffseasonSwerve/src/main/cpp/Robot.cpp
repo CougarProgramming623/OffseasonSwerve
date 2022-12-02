@@ -9,8 +9,7 @@
 
 void Robot::RobotInit() {
   GetDriveTrain().DriveInit();
-  DebugOutF("Init");
-  GetDriveTrain().BaseDrive(0);
+  
 }
 
 /**
@@ -57,12 +56,23 @@ void Robot::TeleopInit() {
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
+
+  // DebugOutF("Init");
+  // frc2::CommandScheduler::GetInstance().Run();
+  // GetDriveTrain().BaseDrive(0);
 }
 
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+    frc2::CommandScheduler::GetInstance().Run();
+  DebugOutF("Encoder tick: " + std::to_string(GetDriveTrain().m_BackRightModule.m_SteerController.motor.GetSelectedSensorPosition()));
+  GetDriveTrain().m_BackRightModule.m_SteerController.motor.Set(ControlMode::Position, 10965);
+  //DebugOutF("Encoder * gear reduc: " )
+  GetDriveTrain().BaseDrive(0);
+  //DebugOutF(std::to_string(GetDriveTrain().m_FrontLeftModule.m_SteerController.GetStateAngle()));
+}
 
 /**
  * This function is called periodically during test mode.

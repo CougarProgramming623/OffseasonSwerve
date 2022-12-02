@@ -48,8 +48,6 @@ class DriveTrain : public frc2::SubsystemBase {
 
   // void DriveToPosition(double x);
 
- private:
-
   frc::Translation2d m_FrontLeftLocation;
   frc::Translation2d m_FrontRightLocation;
   frc::Translation2d m_BackLeftLocation;
