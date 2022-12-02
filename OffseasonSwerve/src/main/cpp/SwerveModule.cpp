@@ -1,5 +1,6 @@
 #include "SwerveModule.h"
 #include "Util.h"
+#include "Constants.h"
 
 SwerveModule::SwerveModule(int driveID, int steerID, int encoderPort, double angleOffset):
     m_DriveController(driveID), 
@@ -47,6 +48,10 @@ void SwerveModule::Set(double driveVoltage, double steerAngle){
     if (steerAngle < 0.0) {
         steerAngle += 2.0 * M_PI;
     }
+
+    DebugOutF("Set() steer angle rad: " + std::to_string(steerAngle));
+    DebugOutF("Set() steer angle deg: " + std::to_string(Rad2Deg(steerAngle)));
+    DebugOutF("Set() steer angle ticks: " + std::to_string((steerAngle / DRIVE_ENCODER_POSITION_CONSTANT)));
 
     m_DriveController.SetReferenceVoltage(driveVoltage);
     m_SteerController.SetReferenceAngle(steerAngle);

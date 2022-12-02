@@ -8,8 +8,8 @@ DriveController::DriveController(int ID)
     motor(ID)
 {
     motor.SetNeutralMode(NeutralMode::Brake);
-    //motor.SetInverted(SMTH)                           IDK why but some of them rotate clockwise and others counter clockwise
-    motor.SetSensorPhase(true);                         //also dont know why we do this one
+    //motor.SetInverted(SMTH)                           FIX idk why but some of them rotate clockwise and others counter clockwise
+    motor.SetSensorPhase(true);                         //FIX also dont know why we do this one
 }
 
 void  DriveController::SetReferenceVoltage(double voltage){

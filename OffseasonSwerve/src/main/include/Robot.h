@@ -32,7 +32,7 @@ class Robot : public frc::TimedRobot {
 
  private:
 
-  AHRS m_NavX{frc::SPI::Port::kMXP}; //IDK This is directly copied and pasted from rapic react
+  AHRS m_NavX{frc::SPI::Port::kMXP};
 
 
   // Have it null by default so that if testing teleop it

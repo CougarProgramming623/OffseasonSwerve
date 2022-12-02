@@ -9,6 +9,8 @@
 
 void Robot::RobotInit() {
   GetDriveTrain().DriveInit();
+  DebugOutF("Init");
+  GetDriveTrain().BaseDrive(0);
 }
 
 /**
@@ -20,7 +22,6 @@ void Robot::RobotInit() {
  * LiveWindow and SmartDashboard integrated updating.
  */
 void Robot::RobotPeriodic() {
-  GetDriveTrain().BaseDrive(0);
   frc2::CommandScheduler::GetInstance().Run();
 }
 
