@@ -28,10 +28,10 @@ void DriveTrain::BaseDrive(double power){
   //m_Kinematics.DesaturateWheelSpeeds(fl, fr, bl, br);
   double angle = 90;
   //DebugOutF("CurEncBD: " + std::to_string(m_FrontLeftModule.m_SteerController.motor.GetSelectedSensorPosition()));
-  m_BackRightModule.Set(0, angle);
-  m_BackLeftModule.Set(0, angle);
-  m_FrontLeftModule.Set(0, angle);
-  m_FrontRightModule.Set(0, angle);
+  // m_BackRightModule.Set(0, angle);
+  // m_BackLeftModule.Set(0, angle);
+  // m_FrontLeftModule.Set(0, angle);
+  // m_FrontRightModule.Set(0, angle);
 
 
   // m_FrontLeftModule.Set(states[0].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[0].angle.Radians());

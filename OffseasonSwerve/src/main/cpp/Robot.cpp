@@ -67,8 +67,8 @@ void Robot::TeleopInit() {
  */
 void Robot::TeleopPeriodic() {
     frc2::CommandScheduler::GetInstance().Run();
-  DebugOutF("Encoder tick: " + std::to_string(GetDriveTrain().m_BackRightModule.m_SteerController.motor.GetSelectedSensorPosition()));
-  GetDriveTrain().m_BackRightModule.m_SteerController.motor.Set(ControlMode::Position, 10965);
+  //DebugOutF("Encoder tick: " + std::to_string(GetDriveTrain().m_BackRightModule.m_SteerController.motor.GetSelectedSensorPosition()));
+  //GetDriveTrain().m_BackRightModule.m_SteerController.motor.Set(ControlMode::Position, 10965);
   //DebugOutF("Encoder * gear reduc: " )
   GetDriveTrain().BaseDrive(0);
   //DebugOutF(std::to_string(GetDriveTrain().m_FrontLeftModule.m_SteerController.GetStateAngle()));
