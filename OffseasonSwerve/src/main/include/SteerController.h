@@ -12,7 +12,7 @@ using ctre::phoenix::motorcontrol::ControlMode;
 
 class SteerController {
     public:
-        SteerController(int motorID, int EncoderPort, double initialAngleOffset);
+        SteerController(int motorID, int EncoderPort, double AngleOffset);
 
         double GetReferenceAngle();
         double GetStateAngle();
