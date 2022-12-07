@@ -17,27 +17,19 @@ DriveTrain::DriveTrain()
       m_ChassisSpeeds{0_mps, 0_mps, 0_rad_per_s}
 {}
 
-void DriveTrain::BaseDrive(double power){
-  //DebugOutF("FR= " + std::to_string(Rad2Deg(m_FrontRightModule.m_SteerController.GetStateAngle())));
-  //DebugOutF("BL= " + std::to_string(Rad2Deg(m_BackLeftModule.m_SteerController.GetStateAngle())));
-  //DebugOutF("BR= " + std::to_string(Rad2Deg(m_BackRightModule.m_SteerController.GetStateAngle())));
-  //DebugOutF("FL= " + std::to_string(Rad2Deg(m_FrontLeftModule.m_SteerController.GetStateAngle())));
-  
-  // auto [fl, fr, bl, br] = m_Kinematics.ToSwerveModuleStates(m_ChassisSpeeds);
-  // frc::SwerveModuleState states[4] = {fl, fr, bl, br};
-  //m_Kinematics.DesaturateWheelSpeeds(fl, fr, bl, br);
-  double angle = (2 * M_PI/2);
-  //DebugOutF("CurEncBD: " + std::to_string(m_FrontLeftModule.m_SteerController.motor.GetSelectedSensorPosition()));
-  m_BackRightModule.Set(0, angle);
-  m_BackLeftModule.Set(0, angle);
-  m_FrontLeftModule.Set(0, angle);
-  m_FrontRightModule.Set(0, angle);
+void periodic(){
+  auto [fl, fr, bl, br] = m_Kinematics.ToSwerveModuleStates(m_ChassisSpeeds);
+  frc::SwerveModuleState states[4] = {fl, fr, bl, br};
+  m_Kinematics.DesaturateWheelSpeeds(fl, fr, bl, br);
 
+  m_FrontLeftModule.Set(states[0].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[0].angle.Radians());
+  m_FrontRightModule.Set(states[1].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[1].angle.Radians());
+  m_BackLeftModule.Set(states[2].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[2].angle.Radians());
+  m_BackRightModule.Set(states[3].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[3].angle.Radians());
+}
 
-  // m_FrontLeftModule.Set(states[0].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[0].angle.Radians());
-  // m_FrontRightModule.Set(states[1].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[1].angle.Radians());
-  // m_BackLeftModule.Set(states[2].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[2].angle.Radians());
-  // m_BackRightModule.Set(states[3].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[3].angle.Radians());
+void DriveTrain::BaseDrive(ChassisSpeeds chassisSpeeds){
+  m_ChassisSpeeds = chassisSpeeds;
 }
 void DriveTrain::DriveInit(){}
 
@@ -47,10 +39,3 @@ void DriveTrain::BreakMode(bool on){
   m_BackLeftModule.BreakMode(true);
   m_BackRightModule.BreakMode(true);
 }
-
-// void DriveTrain::UseVelocityPID(){}
-// void DriveTrain::UseMagicPID(){}
-// void DriveTrain::UsePostionPID(){}
-// void DriveTrain::SetPID(double E, double P, double I, double D, double F){}
-
-// void DriveTrain::DriveToPosition(double x){}

@@ -28,10 +28,13 @@ class Robot : public frc::TimedRobot {
   inline void zeroGyroscope() {m_NavX.ZeroYaw();}
   inline double getYaw() {return m_NavX.GetYaw();}
 
+  static Robot* GetRobot() { return s_Instance; }
+
   inline DriveTrain& GetDriveTrain() { return m_DriveTrain; }
 
  private:
 
+  static Robot* s_Instance;
   AHRS m_NavX{frc::SPI::Port::kMXP};
 
 

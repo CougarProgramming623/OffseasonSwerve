@@ -47,5 +47,5 @@ void SwerveModule::Set(double driveVoltage, double steerAngle){
     }
 
     m_SteerController.SetReferenceAngle(steerAngle);
-
+    m_DriveController.SetReferenceVoltage(driveVoltage);
 }

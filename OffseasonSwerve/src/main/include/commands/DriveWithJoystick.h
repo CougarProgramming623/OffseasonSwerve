@@ -3,12 +3,11 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/SubsystemBase.h>
 
-class Drive : public frc2::CommandHelper<frc2::CommandBase, Drive> {
+
+class DriveWithJoystick : public frc2::CommandHelper<frc2::CommandBase, DriveWithJoystick> {
  public:
-  explicit Drive();
+  explicit DriveWithJoystick();
 
   void Initialize() override;
   void Execute() override;
-
- private:
 };
