@@ -10,10 +10,10 @@ DriveTrain::DriveTrain()
       m_BackRightLocation(units::meter_t (-DRIVETRAIN_TRACKWIDTH_METERS / 2.0), units::meter_t (-DRIVETRAIN_WHEELBASE_METERS / 2.0)),
       m_Kinematics(m_FrontLeftLocation, m_FrontRightLocation, m_BackLeftLocation, m_BackRightLocation),
       m_Rotation(),
-      m_FrontLeftModule(FRONT_LEFT_MODULE_DRIVE_MOTOR, FRONT_LEFT_MODULE_STEER_MOTOR, FRONT_LEFT_MODULE_ENCODER_PORT, -137.3),
-      m_FrontRightModule(FRONT_RIGHT_MODULE_DRIVE_MOTOR, FRONT_RIGHT_MODULE_STEER_MOTOR, FRONT_RIGHT_MODULE_ENCODER_PORT, 73),
-      m_BackLeftModule(BACK_LEFT_MODULE_DRIVE_MOTOR, BACK_LEFT_MODULE_STEER_MOTOR, BACK_LEFT_MODULE_ENCODER_PORT, -140.3),
-      m_BackRightModule(BACK_RIGHT_MODULE_DRIVE_MOTOR, BACK_RIGHT_MODULE_STEER_MOTOR, BACK_RIGHT_MODULE_ENCODER_PORT, -1),
+      m_FrontLeftModule(FRONT_LEFT_MODULE_DRIVE_MOTOR, FRONT_LEFT_MODULE_STEER_MOTOR, FRONT_LEFT_MODULE_ENCODER_PORT, -137),
+      m_FrontRightModule(FRONT_RIGHT_MODULE_DRIVE_MOTOR, FRONT_RIGHT_MODULE_STEER_MOTOR, FRONT_RIGHT_MODULE_ENCODER_PORT, -287),
+      m_BackLeftModule(BACK_LEFT_MODULE_DRIVE_MOTOR, BACK_LEFT_MODULE_STEER_MOTOR, BACK_LEFT_MODULE_ENCODER_PORT, -140.6),
+      m_BackRightModule(BACK_RIGHT_MODULE_DRIVE_MOTOR, BACK_RIGHT_MODULE_STEER_MOTOR, BACK_RIGHT_MODULE_ENCODER_PORT, -2),
       m_ChassisSpeeds{0_mps, 0_mps, 0_rad_per_s}
 {}
 
@@ -26,12 +26,12 @@ void DriveTrain::BaseDrive(double power){
   // auto [fl, fr, bl, br] = m_Kinematics.ToSwerveModuleStates(m_ChassisSpeeds);
   // frc::SwerveModuleState states[4] = {fl, fr, bl, br};
   //m_Kinematics.DesaturateWheelSpeeds(fl, fr, bl, br);
-  double angle = 90;
+  double angle = (2 * M_PI/2);
   //DebugOutF("CurEncBD: " + std::to_string(m_FrontLeftModule.m_SteerController.motor.GetSelectedSensorPosition()));
-  // m_BackRightModule.Set(0, angle);
-  // m_BackLeftModule.Set(0, angle);
-  // m_FrontLeftModule.Set(0, angle);
-  // m_FrontRightModule.Set(0, angle);
+  m_BackRightModule.Set(0, angle);
+  m_BackLeftModule.Set(0, angle);
+  m_FrontLeftModule.Set(0, angle);
+  m_FrontRightModule.Set(0, angle);
 
 
   // m_FrontLeftModule.Set(states[0].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[0].angle.Radians());
