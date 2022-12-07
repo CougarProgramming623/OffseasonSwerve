@@ -9,7 +9,7 @@
 
 void Robot::RobotInit() {
   GetDriveTrain().DriveInit();
-  
+  GetNavX().ZeroYaw();
 }
 
 /**
@@ -59,19 +59,15 @@ void Robot::TeleopInit() {
 
   // DebugOutF("Init");
   // frc2::CommandScheduler::GetInstance().Run();
-  // GetDriveTrain().BaseDrive(0);
+  GetDriveTrain().Periodic();
 }
 
 /**
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-    frc2::CommandScheduler::GetInstance().Run();
-  //DebugOutF("Encoder tick: " + std::to_string(GetDriveTrain().m_BackRightModule.m_SteerController.motor.GetSelectedSensorPosition()));
-  //GetDriveTrain().m_BackRightModule.m_SteerController.motor.Set(ControlMode::Position, 10965);
-  //DebugOutF("Encoder * gear reduc: " )
-  GetDriveTrain().BaseDrive(0);
-  //DebugOutF(std::to_string(GetDriveTrain().m_FrontLeftModule.m_SteerController.GetStateAngle()));
+  frc2::CommandScheduler::GetInstance().Run();
+  //GetDriveTrain().BaseDrive(0);
 }
 
 /**

@@ -37,9 +37,11 @@ using ctre::phoenix::motorcontrol::can::TalonFX;
 class DriveTrain : public frc2::SubsystemBase {
  public:
   DriveTrain();
-  void BaseDrive(double power);
+  void BaseDrive(frc::ChassisSpeeds chassisSpeeds);
   void DriveInit();
   void BreakMode(bool on);
+
+  void Periodic() override;
     
   // void UseVelocityPID();
   // void UseMagicPID();
@@ -68,5 +70,5 @@ class DriveTrain : public frc2::SubsystemBase {
   const units::meters_per_second_t kMAX_VELOCITY_METERS_PER_SECOND = units::meters_per_second_t(6380.0 / 60.0 * DRIVE_REDUCTION * WHEEL_DIAMETER * M_PI);
   
   //theoretical maximum angular velocity - can be replaced with measure amount
-  const units::meters_per_second_t kMAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = kMAX_VELOCITY_METERS_PER_SECOND / std::sqrt(Pow((DRIVETRAIN_TRACKWIDTH_METERS / 2), 2) + Pow((DRIVETRAIN_WHEELBASE_METERS / 2), 2));
+  const units::radians_per_second_t kMAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = (6380 / 60 * (int)DRIVE_REDUCTION * (int)WHEEL_DIAMETER * (int)M_PI) / (int)std::sqrt((int)Pow((DRIVETRAIN_TRACKWIDTH_METERS / 2), 2) + (int)Pow((DRIVETRAIN_WHEELBASE_METERS / 2), 2));
 };

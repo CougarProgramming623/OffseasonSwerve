@@ -17,10 +17,9 @@ DriveTrain::DriveTrain()
       m_ChassisSpeeds{0_mps, 0_mps, 0_rad_per_s}
 {}
 
-void periodic(){
+void DriveTrain::Periodic(){
   auto [fl, fr, bl, br] = m_Kinematics.ToSwerveModuleStates(m_ChassisSpeeds);
   frc::SwerveModuleState states[4] = {fl, fr, bl, br};
-  m_Kinematics.DesaturateWheelSpeeds(fl, fr, bl, br);
 
   m_FrontLeftModule.Set(states[0].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[0].angle.Radians());
   m_FrontRightModule.Set(states[1].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[1].angle.Radians());
@@ -28,7 +27,7 @@ void periodic(){
   m_BackRightModule.Set(states[3].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[3].angle.Radians());
 }
 
-void DriveTrain::BaseDrive(ChassisSpeeds chassisSpeeds){
+void DriveTrain::BaseDrive(frc::ChassisSpeeds chassisSpeeds){
   m_ChassisSpeeds = chassisSpeeds;
 }
 void DriveTrain::DriveInit(){}

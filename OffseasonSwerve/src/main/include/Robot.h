@@ -6,6 +6,7 @@
 #include <frc/TimedRobot.h>
 #include <frc2/command/Command.h>
 #include <AHRS.h>
+#include <frc/Joystick.h>
 
 
 #include "RobotContainer.h"
@@ -32,11 +33,14 @@ class Robot : public frc::TimedRobot {
 
   inline DriveTrain& GetDriveTrain() { return m_DriveTrain; }
 
+  inline frc::Joystick& GetJoyStick() { return m_Joystick; }
+
  private:
 
   static Robot* s_Instance;
   AHRS m_NavX{frc::SPI::Port::kMXP};
 
+  frc::Joystick m_Joystick = frc::Joystick(1);
 
   // Have it null by default so that if testing teleop it
   // doesn't have undefined behavior and potentially crash.
