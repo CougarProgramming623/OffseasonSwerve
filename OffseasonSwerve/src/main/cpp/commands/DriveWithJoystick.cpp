@@ -3,14 +3,16 @@
 #include "frc/kinematics/ChassisSpeeds.h"
 
 DriveWithJoystick::DriveWithJoystick() {
-    this->AddRequirements(&Robot::GetRobot()->GetDriveTrain());
+    AddRequirements(&Robot::s_Instance->GetDriveTrain());
 }
 
-void Initialize(){
+//DriveWithJoystick::~DriveWithJoystick(){}
+
+void DriveWithJoystick::Initialize(){
 
 }
 
-double deadFix(double in, double deadband) {
+double DriveWithJoystick::Deadfix(double in, double deadband) {
     if(abs(in) < deadband) {
         return 0;
     }
@@ -19,24 +21,18 @@ double deadFix(double in, double deadband) {
 
 
 
-void Execute() {
-    Robot* r = Robot::GetRobot();
-    frc::Rotation2d rot = frc::Rotation2d();
-    // r->GetDriveTrain().BaseDrive(
-    //     frc::ChassisSpeeds::FromFieldRelativeSpeeds(
-    //         r->GetJoyStick().GetRawAxis(0) * r->GetDriveTrain().kMAX_VELOCITY_METERS_PER_SECOND,
-    //         r->GetJoyStick().GetRawAxis(1) * r->GetDriveTrain().kMAX_VELOCITY_METERS_PER_SECOND,
-    //         r->GetJoyStick().GetRawAxis(2) * r->GetDriveTrain().kMAX_VELOCITY_METERS_PER_SECOND,
-    //         //r->getYaw()
-    //     )
-    // );
-
+void DriveWithJoystick::Execute() {
+    Robot* r = Robot::s_Instance;
+    DebugOutF(std::to_string(r->GetNavX().GetAngle()));
+    
     r->GetDriveTrain().BaseDrive(
         frc::ChassisSpeeds::FromFieldRelativeSpeeds(
-            units::meters_per_second_t(r->GetJoyStick().GetRawAxis(0) * r->GetDriveTrain().kMAX_VELOCITY_METERS_PER_SECOND),
-            units::meters_per_second_t(r->GetJoyStick().GetRawAxis(1) * r->GetDriveTrain().kMAX_VELOCITY_METERS_PER_SECOND),
-            units::radians_per_second_t(r->GetJoyStick().GetRawAxis(2) * r->GetDriveTrain().kMAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND),
-            rot
+            units::meters_per_second_t(-Deadfix(r->GetJoyStick().GetRawAxis(0), 0.2) * r->GetDriveTrain().kMAX_VELOCITY_METERS_PER_SECOND),
+            units::meters_per_second_t(-Deadfix(r->GetJoyStick().GetRawAxis(1), 0.2) * r->GetDriveTrain().kMAX_VELOCITY_METERS_PER_SECOND),
+            units::radians_per_second_t(-Deadfix(r->GetJoyStick().GetRawAxis(2), 0.2) * r->GetDriveTrain().kMAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND),
+            frc::Rotation2d(units::radian_t(Deg2Rad((360) - r->GetNavX().GetAngle())))
         )
     );
+
+
 }

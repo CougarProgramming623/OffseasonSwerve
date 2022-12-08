@@ -27,7 +27,9 @@ class Robot : public frc::TimedRobot {
 
   inline AHRS& GetNavX() { return m_NavX; }
   inline void zeroGyroscope() {m_NavX.ZeroYaw();}
-  inline double getYaw() {return m_NavX.GetYaw();}
+  inline double getYaw() {
+    //return 360 m_NavX.GetYaw() - 90;
+  }
 
   static Robot* GetRobot() { return s_Instance; }
 
@@ -35,9 +37,11 @@ class Robot : public frc::TimedRobot {
 
   inline frc::Joystick& GetJoyStick() { return m_Joystick; }
 
+  static Robot* s_Instance;
+
+
  private:
 
-  static Robot* s_Instance;
   AHRS m_NavX{frc::SPI::Port::kMXP};
 
   frc::Joystick m_Joystick = frc::Joystick(1);

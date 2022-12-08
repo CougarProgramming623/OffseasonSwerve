@@ -29,6 +29,7 @@
 #include "Constants.h"
 #include "SwerveModule.h"
 #include <frc2/command/SubsystemBase.h>
+#include "commands/DriveWithJoystick.h"
 
 
 
@@ -56,7 +57,7 @@ class DriveTrain : public frc2::SubsystemBase {
   frc::Translation2d m_BackRightLocation;
   frc::SwerveDriveKinematics<4> m_Kinematics;
   //frc::SwerveDriveOdometry<4> m_Odometry;    //IDK where this was in the code
-  const frc::Rotation2d m_Rotation;             
+  frc::Rotation2d m_Rotation;             
   frc::ChassisSpeeds m_ChassisSpeeds;
 
   SwerveModule m_FrontLeftModule;
@@ -70,5 +71,5 @@ class DriveTrain : public frc2::SubsystemBase {
   const units::meters_per_second_t kMAX_VELOCITY_METERS_PER_SECOND = units::meters_per_second_t(6380.0 / 60.0 * DRIVE_REDUCTION * WHEEL_DIAMETER * M_PI);
   
   //theoretical maximum angular velocity - can be replaced with measure amount
-  const units::radians_per_second_t kMAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = (6380 / 60 * (int)DRIVE_REDUCTION * (int)WHEEL_DIAMETER * (int)M_PI) / (int)std::sqrt((int)Pow((DRIVETRAIN_TRACKWIDTH_METERS / 2), 2) + (int)Pow((DRIVETRAIN_WHEELBASE_METERS / 2), 2));
+  const units::radians_per_second_t kMAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = units::radians_per_second_t(6380.0 / 60.0 * DRIVE_REDUCTION * WHEEL_DIAMETER * M_PI / std::sqrt(Pow((DRIVETRAIN_TRACKWIDTH_METERS / 2), 2) + Pow((DRIVETRAIN_WHEELBASE_METERS / 2), 2)));
 };

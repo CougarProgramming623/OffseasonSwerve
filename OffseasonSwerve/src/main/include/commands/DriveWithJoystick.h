@@ -7,7 +7,9 @@
 class DriveWithJoystick : public frc2::CommandHelper<frc2::CommandBase, DriveWithJoystick> {
  public:
   explicit DriveWithJoystick();
+  //~DriveWithJoystick();
 
   void Initialize() override;
   void Execute() override;
+  double Deadfix(double in, double deadband);
 };

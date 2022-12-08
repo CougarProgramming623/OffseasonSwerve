@@ -1,4 +1,5 @@
 #include "subsystems/Drivetrain.h"
+#include "Robot.h"
 
 #include <frc/trajectory/Trajectory.h>
 #include <frc/kinematics/SwerveModuleState.h>
@@ -21,16 +22,19 @@ void DriveTrain::Periodic(){
   auto [fl, fr, bl, br] = m_Kinematics.ToSwerveModuleStates(m_ChassisSpeeds);
   frc::SwerveModuleState states[4] = {fl, fr, bl, br};
 
-  m_FrontLeftModule.Set(states[0].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[0].angle.Radians());
-  m_FrontRightModule.Set(states[1].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[1].angle.Radians());
-  m_BackLeftModule.Set(states[2].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[2].angle.Radians());
-  m_BackRightModule.Set(states[3].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE, (double) states[3].angle.Radians());
+  m_FrontLeftModule.Set(states[0].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE / 5, (double) states[0].angle.Radians());
+  m_FrontRightModule.Set(states[1].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE / 5, (double) states[1].angle.Radians());
+  m_BackLeftModule.Set(states[2].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE / 5, (double) states[2].angle.Radians());
+  m_BackRightModule.Set(states[3].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE / 5, (double) states[3].angle.Radians());
 }
 
 void DriveTrain::BaseDrive(frc::ChassisSpeeds chassisSpeeds){
   m_ChassisSpeeds = chassisSpeeds;
 }
-void DriveTrain::DriveInit(){}
+void DriveTrain::DriveInit(){
+  m_Rotation = frc::Rotation2d(units::radian_t(Robot::s_Instance->GetNavX().GetAngle()));
+  SetDefaultCommand(DriveWithJoystick());
+}
 
 void DriveTrain::BreakMode(bool on){
   m_FrontLeftModule.BreakMode(true);

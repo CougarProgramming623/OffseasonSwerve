@@ -7,9 +7,12 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
 
+Robot* Robot::s_Instance = nullptr;
+
 void Robot::RobotInit() {
-  GetDriveTrain().DriveInit();
   GetNavX().ZeroYaw();
+  s_Instance = this;
+  m_DriveTrain.DriveInit();
 }
 
 /**
@@ -56,10 +59,8 @@ void Robot::TeleopInit() {
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
-
-  // DebugOutF("Init");
-  // frc2::CommandScheduler::GetInstance().Run();
-  GetDriveTrain().Periodic();
+  GetNavX().ZeroYaw();
+  GetNavX().SetAngleAdjustment(-90);
 }
 
 /**
@@ -67,7 +68,6 @@ void Robot::TeleopInit() {
  */
 void Robot::TeleopPeriodic() {
   frc2::CommandScheduler::GetInstance().Run();
-  //GetDriveTrain().BaseDrive(0);
 }
 
 /**
