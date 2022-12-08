@@ -22,10 +22,10 @@ void DriveTrain::Periodic(){
   auto [fl, fr, bl, br] = m_Kinematics.ToSwerveModuleStates(m_ChassisSpeeds);
   frc::SwerveModuleState states[4] = {fl, fr, bl, br};
 
-  m_FrontLeftModule.Set(states[0].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE / 5, (double) states[0].angle.Radians());
-  m_FrontRightModule.Set(states[1].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE / 5, (double) states[1].angle.Radians());
-  m_BackLeftModule.Set(states[2].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE / 5, (double) states[2].angle.Radians());
-  m_BackRightModule.Set(states[3].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE / 5, (double) states[3].angle.Radians());
+  m_FrontLeftModule.Set(states[1].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE / 5, (double) states[1].angle.Radians());
+  m_FrontRightModule.Set(states[0].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE / 5, (double) states[0].angle.Radians());
+  m_BackLeftModule.Set(states[3].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE / 5, (double) states[3].angle.Radians());
+  m_BackRightModule.Set(states[2].speed / kMAX_VELOCITY_METERS_PER_SECOND * kMAX_VOLTAGE / 5, (double) states[2].angle.Radians());
 }
 
 void DriveTrain::BaseDrive(frc::ChassisSpeeds chassisSpeeds){
